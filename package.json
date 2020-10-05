@@ -1,0 +1,23 @@
+{
+  "name": "mediator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clear": "rm -R build",
+    "build": "tsc && cd build && cd src && node index.js",
+    "fmt": "prettier --write ./src && prettier --write ./test",
+    "watch": "tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/mocha": "^8.0.3",
+    "@types/node": "^14.10.0",
+    "mocha": "^8.1.3"
+  }
+}
