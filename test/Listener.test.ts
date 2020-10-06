@@ -1,5 +1,5 @@
 import ConsoleLogger from "../src/logger/ConsoleLogger/ConsoleLogger";
-import Config from "../src/config/Config";
+import OfflineConfig from "../src/config/OfflineConfig";
 import ServerCore from "../src/server/ServerCore/ServerCore";
 import { ClientRequest, IncomingMessage, ServerResponse } from "http";
 import SecurityPolicy from "../src/server/Policy/SecurityPolicy";
@@ -12,8 +12,8 @@ import {
 } from "http2";
 
 //const PROTOCOL = Config.getInstance().protocol || "https";
-const HOSTNAME = Config.getInstance().hostname || "localhost";
-const PORT = Config.getInstance().port || 9090;
+const HOSTNAME = OfflineConfig.getInstance().hostname || "localhost";
+const PORT = OfflineConfig.getInstance().port || 9090;
 const logger: ConsoleLogger = new ConsoleLogger();
 
 const wait = async (ms: number) => {
