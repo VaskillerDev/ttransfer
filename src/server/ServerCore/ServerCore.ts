@@ -4,9 +4,9 @@ import Http2ServerCore from "./Http2ServerCore/Http2ServerCore";
 import ILogger from "../../logger/ILogger";
 import { SecureServerOptions } from "http2";
 import { readFileSync } from "fs";
-import Config from "../../config/Config";
 import Http2ServerConnection from "./Http2ServerCore/Http2ServerConnection";
 import HttpServerConnection from "./HttpServerCore/HttpServerConnection";
+import OfflineConfig from "../../config/OfflineConfig";
 
 type ImplServerCore = HttpServerCore | Http2ServerCore;
 type ImplServerConnection<T> =
@@ -80,8 +80,8 @@ class ServerCore implements IServerCore {
 
   private createHttp2ServerCore() {
     const secureServerOptions: SecureServerOptions = {
-      key: readFileSync(Config.getInstance().keyPath),
-      cert: readFileSync(Config.getInstance().certPath),
+      key: readFileSync(OfflineConfig.getInstance().keyPath),
+      cert: readFileSync(OfflineConfig.getInstance().certPath),
       allowHTTP1: true,
     };
     this.#server = new Http2ServerCore(this.#logger, secureServerOptions);

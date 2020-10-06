@@ -26,14 +26,14 @@ abstract class AbstractAccessor {
     this.#logger.log(`connect ${this.getTag()} -> ${source.getTag()}`);
     if (this.#requirePayload) {
       if (this.#isPayloadLoaded) {
-        this.#status = source.connect(this, cb);
+        this.#status = cb(this);
       } else {
         this.#logger.err(
           `AbstractAccessor (${this.getTag()}): payload is not loaded`
         );
       }
     }
-    this.#status = source.connect(this, cb);
+    this.#status = cb(this);
     return this.#status;
   }
 
