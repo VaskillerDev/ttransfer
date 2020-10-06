@@ -1,5 +1,7 @@
-class Config {
-  public static getInstance() {
+import BaseConfig from "./BaseConfig";
+
+class OfflineConfig extends BaseConfig {
+  public static getInstance(): BaseConfig {
     return {
       protocol: "https",
       hostname: "localhost",
@@ -9,4 +11,4 @@ class Config {
     };
   }
 }
-export default Config;
+export default OfflineConfig;
