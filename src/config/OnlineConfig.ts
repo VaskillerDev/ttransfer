@@ -16,14 +16,14 @@ class OnlineConfig {
 
   public async pull() {
     const client: Client = new Client(this.#clientConfig);
-   await client.connect((err) => {
+    await client.connect((err) => {
       if (err) {
         this.#logger.err("OnlineConfig.pull error: " + err.stack);
       } else {
         this.#logger.log("OnlineConfig.pull connected!");
       }
     });
-   await client.query(
+    await client.query(
       `SELECT * FROM dev_account_dependencies WHERE type='${this.#type}';`,
       (err, res) => {
         if (err) {
