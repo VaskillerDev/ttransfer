@@ -11,12 +11,12 @@ import Http2ServerConnection from "./Http2ServerConnection";
 class Http2ServerCore implements IServerCore {
   readonly #server: Http2SecureServer;
   #logger: ILogger;
-  #urls: Map<String, Http2ServerConnection<any>>;
+  #urls: Map<string, Http2ServerConnection<any>>;
 
   constructor(logger: ILogger, secureServerOptions: SecureServerOptions) {
     this.#server = createSecureServer(secureServerOptions);
     this.#logger = logger;
-    this.#urls = new Map<String, Http2ServerConnection<any>>();
+    this.#urls = new Map<string, Http2ServerConnection<any>>();
   }
 
   create(port: number, hostname: String): void {
@@ -65,7 +65,7 @@ class Http2ServerCore implements IServerCore {
     });
   }
 
-  on<T>(url: String, func: Http2ServerConnection<T>): Http2ServerCore {
+  on<T>(url: string, func: Http2ServerConnection<T>): Http2ServerCore {
     this.#urls.set(url, func);
     return this;
   }
@@ -77,9 +77,13 @@ class Http2ServerCore implements IServerCore {
     this.#server.close(func);
   }
 
-  rm(key: String, func?: (...args: any[]) => void): void {
+  rm(key: string, func?: (...args: any[]) => void): void {
     this.#urls.delete(key);
     if (func) func();
+  }
+
+  getKeys(): Array<string | symbol> {
+    return Array.from(this.#urls.keys());
   }
 }
 

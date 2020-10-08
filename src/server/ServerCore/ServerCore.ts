@@ -43,7 +43,7 @@ class ServerCore implements IServerCore {
     this.#server.create(port, hostname);
   }
 
-  on<T>(url: String, func: ImplServerConnection<T>): ServerCore {
+  on<T>(url: string, func: ImplServerConnection<T>): ServerCore {
     if (this.#server === undefined) {
       this.#logger.err("ServerCore.server not found");
       throw new Error("ServerCore.server not found in ServerCore.on() method");
@@ -86,12 +86,22 @@ class ServerCore implements IServerCore {
     this.#server = new Http2ServerCore(this.#logger, secureServerOptions);
   }
 
-  rm(key: String, func?: (...args: any[]) => void): void {
+  rm(key: string, func?: (...args: any[]) => void): void {
     if (!this.#server) {
       this.#logger.err("ServerCore.server not found in ServerCore.rm() method");
       return;
     }
-    this.#server.rm(key,func);
+    this.#server.rm(key, func);
+  }
+
+  getKeys(): Array<string | symbol> {
+    if (!this.#server) {
+      this.#logger.err(
+        "ServerCore.server not found in ServerCore.getKeys() method"
+      );
+      return [];
+    }
+    return this.#server.getKeys();
   }
 }
 

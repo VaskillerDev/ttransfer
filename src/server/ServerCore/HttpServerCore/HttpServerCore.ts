@@ -7,12 +7,12 @@ import HttpServerConnection from "./HttpServerConnection";
 class HttpServerCore implements IServerCore {
   readonly #server: Server;
   #logger: ILogger;
-  #urls: Map<String, HttpServerConnection<any>>;
+  #urls: Map<string, HttpServerConnection<any>>;
 
   constructor(logger: ILogger) {
     this.#server = createServer();
     this.#logger = logger;
-    this.#urls = new Map<String, HttpServerConnection<any>>();
+    this.#urls = new Map<string, HttpServerConnection<any>>();
   }
 
   create(port?: number, hostname?: String): void {
@@ -61,7 +61,7 @@ class HttpServerCore implements IServerCore {
     });
   }
 
-  on<T>(url: String, func: HttpServerConnection<T>): HttpServerCore {
+  on<T>(url: string, func: HttpServerConnection<T>): HttpServerCore {
     this.#urls.set(url, func);
     return this;
   }
@@ -73,9 +73,13 @@ class HttpServerCore implements IServerCore {
     this.#server.close(func);
   }
 
-  rm(key: String, func?: (...args: any[]) => void): void {
+  rm(key: string, func?: (...args: any[]) => void): void {
     this.#urls.delete(key);
     if (func) func();
+  }
+
+  getKeys(): Array<string | symbol> {
+    return Array.from(this.#urls.keys());
   }
 }
 
