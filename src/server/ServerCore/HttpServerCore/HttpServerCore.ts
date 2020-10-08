@@ -72,6 +72,11 @@ class HttpServerCore implements IServerCore {
     }
     this.#server.close(func);
   }
+
+  rm(key: String, func?: (...args: any[]) => void): void {
+    this.#urls.delete(key);
+    if (func) func();
+  }
 }
 
 export { HttpServerCore, HttpServerConnection };

@@ -76,6 +76,11 @@ class Http2ServerCore implements IServerCore {
     }
     this.#server.close(func);
   }
+
+  rm(key: String, func?: (...args: any[]) => void): void {
+    this.#urls.delete(key);
+    if (func) func();
+  }
 }
 
 export default Http2ServerCore;

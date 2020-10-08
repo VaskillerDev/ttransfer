@@ -72,7 +72,6 @@ class ServerCore implements IServerCore {
     this.#server.close(func);
     return this;
   }
-
   // private:
   private createHttpServerCore() {
     this.#server = new HttpServerCore(this.#logger);
@@ -85,6 +84,14 @@ class ServerCore implements IServerCore {
       allowHTTP1: true,
     };
     this.#server = new Http2ServerCore(this.#logger, secureServerOptions);
+  }
+
+  rm(key: String, func?: (...args: any[]) => void): void {
+    if (!this.#server) {
+      this.#logger.err("ServerCore.server not found in ServerCore.rm() method");
+      return;
+    }
+    this.#server.rm(key,func);
   }
 }
 
