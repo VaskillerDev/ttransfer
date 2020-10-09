@@ -1,6 +1,5 @@
-import ILogger from "../logger/ILogger";
 import Route from "./Route";
-import IServerCore from "../server/ServerCore/IServerCore";
+import { ILogger, IServerCore } from "ttransfer_util";
 
 class Listener {
   readonly #port: number;

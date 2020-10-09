@@ -1,4 +1,4 @@
-import BaseConfig from "./BaseConfig";
+import { BaseConfig } from "ttransfer_util";
 
 class OfflineConfig extends BaseConfig {
   public static getInstance(): BaseConfig {

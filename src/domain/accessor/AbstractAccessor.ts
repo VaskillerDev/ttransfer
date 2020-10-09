@@ -1,6 +1,6 @@
 import OwnerGroup from "../owner/OwnerGroup";
-import ILogger from "../../logger/ILogger";
 import Owner from "../owner/Owner";
+import { ILogger } from "ttransfer_util";
 
 type ConnectStatus = "success" | "reject" | "waiting" | "none";
 

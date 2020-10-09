@@ -1,9 +1,11 @@
-import ConsoleLogger from "../src/logger/ConsoleLogger/ConsoleLogger";
 import OfflineConfig from "../src/config/OfflineConfig";
-import ServerCore from "../src/server/ServerCore/ServerCore";
 import { ClientRequest, IncomingMessage, ServerResponse } from "http";
-import SecurityPolicy from "../src/server/Policy/SecurityPolicy";
-import HttpServerConnection from "../src/server/ServerCore/HttpServerCore/HttpServerConnection";
+import {
+  ConsoleLogger,
+  HttpServerConnection,
+  SecurityPolicy,
+  ServerCore,
+} from "ttransfer_util";
 import {
   ClientHttp2Session,
   ClientHttp2Stream,

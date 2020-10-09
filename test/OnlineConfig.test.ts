@@ -1,5 +1,5 @@
 import OnlineConfig from "../src/config/OnlineConfig";
-import ConsoleLogger from "../src/logger/ConsoleLogger/ConsoleLogger";
+import { ConsoleLogger } from "ttransfer_util";
 
 describe("OnlineConfig test flow", async () => {
   const logger: ConsoleLogger = new ConsoleLogger();

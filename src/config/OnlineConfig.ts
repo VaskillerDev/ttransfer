@@ -1,6 +1,5 @@
-import BaseConfig from "./BaseConfig";
 import { Client, ClientConfig } from "pg";
-import ILogger from "../logger/ILogger";
+import { BaseConfig, ILogger } from "ttransfer_util";
 
 class OnlineConfig {
   readonly #clientConfig: ClientConfig;
