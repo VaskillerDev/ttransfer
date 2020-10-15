@@ -16,3 +16,8 @@ index.ts - entry point application
  $ npm run watch  #enable watcher for develop
 ```
 All building files locate in /build directory.
+
+##env variables
+PATH=$PATH (default)
+KEY=/path/to/tls/key
+CERT=/path/to/tls/cert
