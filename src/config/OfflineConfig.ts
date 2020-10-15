@@ -6,8 +6,8 @@ class OfflineConfig extends BaseConfig {
       protocol: "https",
       hostname: "localhost",
       port: 9090,
-      keyPath: "../../../../../../../etc/ssl/mediator-selfsigned.key",
-      certPath: "../../../../../../../etc/ssl/certs/mediator-selfsigned.crt",
+      keyPath: process.env.KEY || "undefined",
+      certPath: process.env.CERT || "undefined",
     };
   }
 }
