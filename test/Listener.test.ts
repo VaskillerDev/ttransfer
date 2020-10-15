@@ -2,8 +2,8 @@ import OfflineConfig from "../src/config/OfflineConfig";
 import { ClientRequest, IncomingMessage, ServerResponse } from "http";
 import {
   ConsoleLogger,
-  HttpServerConnection,
   SecurityPolicy,
+  IServerConnection,
   ServerCore,
 } from "ttransfer_util";
 import {
@@ -28,6 +28,7 @@ const testServerCoreFlow = (protocol: String) => {
   describe(`ServerCore flow for protocol:${protocol}`, () => {
     const serverCore: ServerCore = new ServerCore(logger, protocol);
     it("Init ServerCore", () => {
+      serverCore.setConfig(OfflineConfig.getInstance());
       serverCore.create(PORT, HOSTNAME);
       const connection = (
         req: IncomingMessage,
@@ -47,7 +48,7 @@ const testServerCoreFlow = (protocol: String) => {
         res.statusCode = 200;
         res.end();
       };
-      serverCore.on<void>("/f", connection as HttpServerConnection<void>);
+      serverCore.on<void>("/f", connection as IServerConnection<void>);
     });
 
     // Request agent request
