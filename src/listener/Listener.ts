@@ -1,20 +1,20 @@
-import Route from "./Route";
+/*
 import { ILogger, IServerCore } from "ttransfer_util";
 
 class Listener {
   readonly #port: number;
   readonly #logger: ILogger;
   readonly #server: IServerCore;
-  #routes: Map<String, Route>;
+  #routes: Map<String, BasicRoute>;
 
   constructor(logger: ILogger, server: IServerCore, port: number) {
     this.#logger = logger;
     this.#server = server;
     this.#port = port;
-    this.#routes = new Map<String, Route>();
+    this.#routes = new Map<String, BasicRoute>();
   }
 
-  public add(key: String, route: Route): Listener {
+  public add(key: String, route: BasicRoute): Listener {
     this.#routes.set(key, route);
     return this;
   }
@@ -29,3 +29,4 @@ class Listener {
 }
 
 export default Listener;
+*/
