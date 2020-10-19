@@ -18,6 +18,14 @@ index.ts - entry point application
 All building files locate in /build directory.
 
 ##env variables
-PATH=$PATH (default)
-KEY=/path/to/tls/key
-CERT=/path/to/tls/cert
+```
+PATH    = $PATH (default)
+KEY     = /path/to/tls/key
+CERT    = /path/to/tls/cert
+
+PG_USER = username
+PG_PWD  = pwd
+PG_DB   = database
+PG_HOST = localhost
+PG_PORT = port
+```
