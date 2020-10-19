@@ -2,6 +2,6 @@
 
 interface IConnector {
   connect(): Promise<void>;
-  query<T>(func: (...args: any[]) => T,...args: any[]): Promise<T> | void;
+  query<T>(func: (...args: any[]) => T, ...args: any[]): Promise<T> | void;
   disconnect(): Promise<void>;
 }

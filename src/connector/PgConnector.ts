@@ -11,7 +11,7 @@ type OnErrorType = (err: string) => void;
 const ON_CONNECTION: string = "onConnection";
 const ON_ERROR: string = "onError";
 
-class PgConnector implements IConnector{
+class PgConnector implements IConnector {
   logger?: ILogger;
   client?: Client;
   emitter?: ConnectionEmitter;
@@ -79,27 +79,36 @@ class PgConnector implements IConnector{
         host: PgConnector.host,
         port: PgConnector.port,
       };
-      this.logger.log("PgConnector connect to " + clientConfig.database);
+      this.logger.log(
+        "PgConnector connect to " + clientConfig.database + " ..."
+      );
       this.client = new Client(clientConfig);
       await this.client.connect((err: Error) => {
         if (!this.emitter)
           throw new Error("PgConnector.emitter not found in connect() method");
+        if (!this.logger)
+          throw new Error("PgConnector.logger not found in connect() method");
         if (err) this.emitter.emit(ON_ERROR, `PgConnector event: ${err.stack}`);
+        if (!err)
+          this.logger.log(
+            "PgConnector connected to " + clientConfig.database + " successful"
+          );
       });
     }
   }
 
-    async disconnect(): Promise<void> {
-      if (this.client) await this.client.end();
-      if (this.logger) this.logger.log("PgConnector disconnect");
-    }
+  async disconnect(): Promise<void> {
+    if (this.client) await this.client.end();
+    if (this.logger) this.logger.log("PgConnector disconnect");
+  }
 
-    query<T>(func:( pgClient : Client) => T): Promise<T>  {
-        return new Promise(resolve => {
-          if (!this.client) throw new Error("PgConnector.client not found in query() method");
-          resolve(func(this.client));
-        });
-    }
+  query<T>(func: (pgClient: Client) => T): Promise<T> {
+    return new Promise((resolve) => {
+      if (!this.client)
+        throw new Error("PgConnector.client not found in query() method");
+      resolve(func(this.client));
+    });
+  }
 }
 
 export default PgConnector;
