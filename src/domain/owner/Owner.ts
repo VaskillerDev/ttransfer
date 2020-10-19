@@ -1,9 +1,8 @@
 /*
 Owner - entity which describe behaviour specific user.
  */
-import AbstractAccessor from "../accessor/AbstractAccessor";
 
-class Owner {
+/*class Owner {
   readonly #accessor: AbstractAccessor;
   #id: String;
   #active: boolean;
@@ -26,4 +25,4 @@ class Owner {
   }
 }
 
-export default Owner;
+export default Owner;*/
