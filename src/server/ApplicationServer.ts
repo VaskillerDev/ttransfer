@@ -5,7 +5,7 @@ import {
   Server,
   ServerConnectionDTO,
 } from "ttransfer_util";
-import AllowListRoute from "./Route/AllowListRoute";
+import AllowListForRoutes from "./Route/AllowListForRoutes";
 import BaseConfig from "ttransfer_util/dist/src/config/BaseConfig";
 
 type Protocol = "http" | "https";
@@ -42,7 +42,7 @@ class ApplicationServer extends Server {
   ): this {
     const method = route.method as Method;
     const url = route.url;
-    if (!AllowListRoute.check(url as string)) {
+    if (!AllowListForRoutes.check(url as string)) {
       this.logger.log("throw " + (url as string));
       return this; // end
     }
