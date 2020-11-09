@@ -1,14 +1,14 @@
 // singleton
 import ILogger from "ttransfer_util/dist/src/logger/ILogger";
 
-class AllowListRoute {
-  private static instance: AllowListRoute;
+class AllowListForRoutes {
+  private static instance: AllowListForRoutes;
   private static set: Set<string>;
   private constructor() {}
 
-  public static getInstance(): AllowListRoute {
+  public static getInstance(): AllowListForRoutes {
     if (!this.instance) {
-      this.instance = new AllowListRoute();
+      this.instance = new AllowListForRoutes();
       this.set = new Set<string>();
     }
     return this.instance;
@@ -31,4 +31,4 @@ class AllowListRoute {
   }
 }
 
-export default AllowListRoute;
+export default AllowListForRoutes;
