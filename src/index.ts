@@ -16,7 +16,7 @@ import ApplicationServer from "./server/ApplicationServer";
 import { IncomingMessage } from "http";
 import { Socket } from "net";
 import SecurityRoute from "./server/Route/SecurityRoute";
-import AllowListRoute from "./server/Route/AllowListRoute";
+import AllowListForRoutes from "./server/Route/AllowListForRoutes";
 import OfflineConfig from "./config/OfflineConfig";
 import PgConnector from "./connector/PgConnector";
 
@@ -34,7 +34,7 @@ type Protocol = "http" | "https";
     OfflineConfig.getInstance()
   );
 
-  AllowListRoute.getInstance();
+  AllowListForRoutes.getInstance();
   const secRoute = new SecurityRoute("/f", "post");
 
   //todo: to fix the convergence types
@@ -57,29 +57,7 @@ type Protocol = "http" | "https";
   // @ts-ignore
   logger.log(c.toObject().protocol);*!/
 
-  AllowListRoute.print(logger);
+  AllowListForRoutes.print(logger);
 
   server.use<number>(secRoute, connection as IServerConnection<number>);*/
-  const wait = async (ms: number) => {
-    return new Promise((resolve) => {
-      return setTimeout(resolve, ms);
-    });
-  };
-
-  const logger: ConsoleLogger = new ConsoleLogger();
-
-  const pgConnector = PgConnector.getInstance();
-  pgConnector.setLogger(logger);
-  pgConnector.setupEmitter();
-  pgConnector.connect();
-
-  pgConnector.query<void>((pgClient => {
-    pgClient
-        .query(`SELECT * FROM dev_account_dependencies`)
-        .then(res=>console.log(res.rows[0]))
-        .catch(err=>console.log(err));
-  }))
-
-  //wait(8000);
-  //pgConnector.disconnect();
 })();
