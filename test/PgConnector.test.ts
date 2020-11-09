@@ -6,22 +6,20 @@ const wait = async (ms: number) => {
     return setTimeout(resolve, ms);
   });
 };
-
-describe("PgConnector flow", () => {
+(async () => {
   const logger: ConsoleLogger = new ConsoleLogger();
-  it("Connect to database", () => {
-    const pgConnector = PgConnector.getInstance();
-    pgConnector.setLogger(logger);
-    pgConnector.setupEmitter();
-    pgConnector.connect();
+  const pgConnector = PgConnector.getInstance();
+  pgConnector.setLogger(logger);
+  pgConnector.setupEmitter();
+  await pgConnector.connect();
 
-    pgConnector.query<void>((pgClient => {
-      pgClient
-          .query(`SELECT * FROM dev_account_dependencies`)
-          .then(res=>console.log(res.rows[0].message));
-    }))
-
-    wait(5000);
-    pgConnector.disconnect();
+  await pgConnector.query<void>((pgClient) => {
+    pgClient
+      .query(`SELECT * FROM dev_account_dependencies`)
+      .then((res) => console.log(res.rows[0]))
+      .catch((err) => console.log(err));
   });
-});
+
+  await wait(25000);
+  await pgConnector.disconnect();
+})();
